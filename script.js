@@ -1,5 +1,16 @@
+// Display the brain scan form after a loading delay
+window.onload = () => {
+    setTimeout(() => {
+        // Hide loading screen
+        document.getElementById('loading-screen').classList.add('hidden');
+
+        // Show brain scan form
+        document.getElementById('brain-scan-section').classList.remove('hidden');
+    }, 3000); // Adjust the delay (in milliseconds) as needed
+};
+
 document.getElementById('brain-scan-form').addEventListener('submit', async (event) => {
-    event.preventDefault();  // Prevent page reload
+    event.preventDefault(); // Prevent page reload
 
     // Collect responses from the brain scan form
     const responses = {
@@ -20,7 +31,7 @@ document.getElementById('brain-scan-form').addEventListener('submit', async (eve
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ responses }),  // Send user responses
+            body: JSON.stringify({ responses }), // Send user responses
         });
 
         const data = await response.json();
@@ -35,7 +46,7 @@ document.getElementById('brain-scan-form').addEventListener('submit', async (eve
 
         // Display therapy questions dynamically
         const therapyQuestionsContainer = document.getElementById('therapy-questions-container');
-        therapyQuestionsContainer.innerHTML = '';  // Clear any previous questions
+        therapyQuestionsContainer.innerHTML = ''; // Clear any previous questions
 
         data.questions.forEach((question, index) => {
             const questionDiv = document.createElement('div');
