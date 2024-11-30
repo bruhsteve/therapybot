@@ -15,7 +15,7 @@ document.getElementById('brain-scan-form').addEventListener('submit', async (eve
 
     try {
         // Fetch therapy questions based on brain scan input
-        const response = await fetch('https://therapy-bot-backend.onrender.com/api/chat', {
+        const response = await fetch('https://therapy-bot-backend.onrender.com/api/brain-scan', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
