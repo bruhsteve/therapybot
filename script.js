@@ -1,3 +1,4 @@
+let isSubmitting = false;
 async function submitResponses(responses) {
     const responseDiv = document.getElementById('response'); // Placeholder for results
 
