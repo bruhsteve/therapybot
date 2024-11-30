@@ -1,3 +1,11 @@
+// Show loading screen, then display the brain scan form after 3 seconds
+window.onload = () => {
+    setTimeout(() => {
+        document.getElementById('loading-screen').classList.add('hidden');
+        document.getElementById('brain-scan-section').classList.remove('hidden');
+    }, 3000); // Adjust the delay (in milliseconds) as needed
+};
+
 document.getElementById('brain-scan-form').addEventListener('submit', async (event) => {
     event.preventDefault();  // Prevent page reload
 
@@ -15,7 +23,7 @@ document.getElementById('brain-scan-form').addEventListener('submit', async (eve
 
     try {
         // Fetch therapy questions based on brain scan input
-        const response = await fetch('https://therapy-bot-backend.onrender.com/api/brain-scan', {
+        const response = await fetch('https://therapy-bot-backend.onrender.com/api/chat', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -30,8 +38,8 @@ document.getElementById('brain-scan-form').addEventListener('submit', async (eve
         }
 
         // Hide brain scan form and display therapy questions
-        document.getElementById('brain-scan-form').style.display = 'none';
-        document.getElementById('therapy-questions-section').style.display = 'block';
+        document.getElementById('brain-scan-section').classList.add('hidden');
+        document.getElementById('therapy-questions-section').classList.remove('hidden');
 
         // Display therapy questions dynamically
         const therapyQuestionsContainer = document.getElementById('therapy-questions-container');

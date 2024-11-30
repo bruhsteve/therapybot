@@ -10,8 +10,26 @@
             padding: 20px;
             background-color: #f0f8ff;
         }
-        h1 {
+        h1, h2 {
             text-align: center;
+        }
+        #loading-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f8ff;
+        }
+        #brain-scan-graphic {
+            width: 150px;
+            height: 150px;
+            background: url('brain-scan.gif') no-repeat center center;
+            background-size: cover;
+            margin-bottom: 20px;
+        }
+        .hidden {
+            display: none;
         }
         .question {
             margin-bottom: 15px;
@@ -29,41 +47,50 @@
     </style>
 </head>
 <body>
-    <h1>Complete Your Brain Scan</h1>
-    <form id="brain-scan-form">
-        <div class="question">
-            <label for="stress-level">How stressed do you feel on a scale from 1-10?</label>
-            <input type="number" id="stress-level" name="stress-level" min="1" max="10" required>
-        </div>
-        <div class="question">
-            <label for="emotions">How would you describe your emotions right now?</label>
-            <textarea id="emotions" name="emotions" rows="4" required></textarea>
-        </div>
-        <div class="question">
-            <label for="mental-health">How would you rate your mental health in the last week (1-10)?</label>
-            <input type="number" id="mental-health" name="mental-health" min="1" max="10" required>
-        </div>
-        <div class="question">
-            <label for="mindset">Do you feel hopeful about your future?</label>
-            <select id="mindset" name="mindset" required>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-                <option value="unsure">Unsure</option>
-            </select>
-        </div>
-        <div class="question">
-            <label for="sleep">How well have you been sleeping?</label>
-            <select id="sleep" name="sleep" required>
-                <option value="well">Well</option>
-                <option value="average">Average</option>
-                <option value="poor">Poor</option>
-            </select>
-        </div>
-        <button type="submit">Submit Brain Scan</button>
-    </form>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div id="brain-scan-graphic"></div>
+        <h1>Brain Scan in Progress...</h1>
+    </div>
 
-    <!-- Section for Therapy Questions (hidden initially) -->
-    <div id="therapy-questions-section">
+    <!-- Brain Scan Form -->
+    <div id="brain-scan-section" class="hidden">
+        <h1>Complete Your Brain Scan</h1>
+        <form id="brain-scan-form">
+            <div class="question">
+                <label for="stress-level">How stressed do you feel on a scale from 1-10?</label>
+                <input type="number" id="stress-level" name="stress-level" min="1" max="10" required>
+            </div>
+            <div class="question">
+                <label for="emotions">How would you describe your emotions right now?</label>
+                <textarea id="emotions" name="emotions" rows="4" required></textarea>
+            </div>
+            <div class="question">
+                <label for="mental-health">How would you rate your mental health in the last week (1-10)?</label>
+                <input type="number" id="mental-health" name="mental-health" min="1" max="10" required>
+            </div>
+            <div class="question">
+                <label for="mindset">Do you feel hopeful about your future?</label>
+                <select id="mindset" name="mindset" required>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="unsure">Unsure</option>
+                </select>
+            </div>
+            <div class="question">
+                <label for="sleep">How well have you been sleeping?</label>
+                <select id="sleep" name="sleep" required>
+                    <option value="well">Well</option>
+                    <option value="average">Average</option>
+                    <option value="poor">Poor</option>
+                </select>
+            </div>
+            <button type="submit">Submit Brain Scan</button>
+        </form>
+    </div>
+
+    <!-- Therapy Questions Section -->
+    <div id="therapy-questions-section" class="hidden">
         <h2>Your Therapy Questions</h2>
         <div id="therapy-questions-container"></div>
         <button id="submit-therapy-questions" style="display:none;">Submit Therapy Questions</button>
