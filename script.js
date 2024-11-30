@@ -1,6 +1,10 @@
 async function submitResponses(responses) {
     const responseDiv = document.getElementById('response'); // Placeholder for results
 
+    if (isSubmitting) return; // Prevent multiple submissions
+    isSubmitting = true;
+    responseDiv.innerText = "Generating your therapy profile...";
+
     try {
         // Display loading message
         responseDiv.innerText = "Generating your therapy profile...";
@@ -37,6 +41,9 @@ async function submitResponses(responses) {
             <h2>Something went wrong</h2>
             <p>Please try again later. Error: ${error.message}</p>
         `;
+    }
+    finally {
+        isSubmitting = false; // Re-enable submission after a delay
     }
 }
 
