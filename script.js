@@ -1,17 +1,17 @@
-let isSubmitting = false;
+let isSubmitting = false; // Declare the variable at the top to keep track of form submission state
+
 async function submitResponses(responses) {
     const responseDiv = document.getElementById('response'); // Placeholder for results
 
     if (isSubmitting) return; // Prevent multiple submissions
-    isSubmitting = true;
-    responseDiv.innerText = "Generating your therapy profile...";
+    isSubmitting = true; // Set to true to prevent further submissions
 
     try {
         // Display loading message
         responseDiv.innerText = "Generating your therapy profile...";
 
         // Send responses to your backend server
-        const response = await fetch('https://therapy-bot-backend.onrender.com/api/chat', { // Call your backend endpoint
+        const response = await fetch('https://therapy-bot-backend.onrender.com/api/chat', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -42,8 +42,7 @@ async function submitResponses(responses) {
             <h2>Something went wrong</h2>
             <p>Please try again later. Error: ${error.message}</p>
         `;
-    }
-    finally {
+    } finally {
         isSubmitting = false; // Re-enable submission after a delay
     }
 }
