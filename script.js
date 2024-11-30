@@ -1,13 +1,9 @@
 // Declare isSubmitting variable at the top to ensure it is globally accessible
-let isSubmitting = false;
 
 async function submitResponses(responses) {
     const responseDiv = document.getElementById('response'); // Placeholder for results
 
     // Prevent multiple submissions
-    if (isSubmitting) return;
-    isSubmitting = true; // Set isSubmitting to true to prevent further submissions
-
     try {
         // Display loading message
         responseDiv.innerText = "Generating your therapy profile...";
@@ -46,10 +42,7 @@ async function submitResponses(responses) {
             <h2>Something went wrong</h2>
             <p>Please try again later. Error: ${error.message}</p>
         `;
-    } finally {
-        // Re-enable submission after the process is finished
-        isSubmitting = false;
-    }
+    } 
 }
 
 // Attach event listener to the quiz form
