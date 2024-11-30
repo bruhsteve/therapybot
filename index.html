@@ -20,6 +20,12 @@
             margin-top: 20px;
             font-weight: bold;
         }
+        .therapy-question {
+            margin-top: 20px;
+        }
+        #therapy-questions-section {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -55,6 +61,13 @@
         </div>
         <button type="submit">Submit Brain Scan</button>
     </form>
+
+    <!-- Section for Therapy Questions (hidden initially) -->
+    <div id="therapy-questions-section">
+        <h2>Your Therapy Questions</h2>
+        <div id="therapy-questions-container"></div>
+        <button id="submit-therapy-questions" style="display:none;">Submit Therapy Questions</button>
+    </div>
 
     <div id="response"></div>
 

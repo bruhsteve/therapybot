@@ -1,118 +1,87 @@
-let isSubmitting = false;  // To prevent multiple submissions
-
-async function submitBrainScanResponses(responses) {
-    const responseDiv = document.getElementById('response');  // Placeholder for results
-
-    if (isSubmitting) return;  // Prevent multiple submissions
-    isSubmitting = true;
-    responseDiv.innerText = "Generating personalized therapy questions...";
-
-    try {
-        // Send brain scan responses to the backend to get therapy questions
-        const response = await fetch('https://your-backend-url/api/brain-scan', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ responses }),  // Send the brain scan responses
-        });
-
-        if (!response.ok) throw new Error('Failed to fetch therapy questions.');
-
-        // Get the therapy questions from the server
-        const data = await response.json();
-        const therapyQuestions = data.questions;
-
-        // Display the therapy questions to the user for input
-        showTherapyQuestions(therapyQuestions);
-    } catch (error) {
-        console.error('Error:', error);
-        responseDiv.innerHTML = `<h2>Something went wrong</h2><p>Please try again later. Error: ${error.message}</p>`;
-    } finally {
-        isSubmitting = false;  // Re-enable submission
-    }
-}
-
-// Display therapy questions one by one
-function showTherapyQuestions(questions) {
-    const responseDiv = document.getElementById('response');
-    let currentQuestionIndex = 0;
-    const responses = [];
-
-    // Function to show the next question
-    function displayNextQuestion() {
-        if (currentQuestionIndex < questions.length) {
-            responseDiv.innerHTML = `
-                <h2>Question ${currentQuestionIndex + 1}:</h2>
-                <p>${questions[currentQuestionIndex]}</p>
-                <input type="text" id="user-response" />
-                <button onclick="submitAnswer()">Next</button>
-            `;
-        } else {
-            // Once all questions are answered, submit the responses
-            submitTherapyProfile(responses);
-        }
-    }
-
-    // Function to handle the answer and move to the next question
-    function submitAnswer() {
-        const userResponse = document.getElementById('user-response').value;
-        if (userResponse) {
-            responses.push(userResponse);
-            currentQuestionIndex++;
-            displayNextQuestion();
-        } else {
-            alert("Please answer the question before moving on.");
-        }
-    }
-
-    displayNextQuestion();  // Start the first question
-}
-
-// Submit the therapy responses to generate a therapy profile
-async function submitTherapyProfile(responses) {
-    const responseDiv = document.getElementById('response');
-
-    if (isSubmitting) return;  // Prevent multiple submissions
-    isSubmitting = true;
-    responseDiv.innerText = "Generating your personalized therapy profile...";
-
-    try {
-        // Send therapy responses to the backend to generate a profile
-        const response = await fetch('https://your-backend-url/api/chat', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ responses }),  // Send user answers
-        });
-
-        if (!response.ok) throw new Error('Failed to generate therapy profile.');
-
-        // Get the personalized therapy profile from the server
-        const data = await response.json();
-        const therapyProfile = data.profile;
-
-        // Display the therapy profile to the user
-        responseDiv.innerHTML = `
-            <h2>Your Personalized Therapy Profile:</h2>
-            <p>${therapyProfile}</p>
-        `;
-    } catch (error) {
-        console.error('Error:', error);
-        responseDiv.innerHTML = `<h2>Something went wrong</h2><p>Please try again later. Error: ${error.message}</p>`;
-    } finally {
-        isSubmitting = false;  // Re-enable submission
-    }
-}
-
-// Attach event listener to the initial brain scan form (assuming this is the first step)
-document.getElementById('brain-scan-form').addEventListener('submit', (event) => {
+document.getElementById('brain-scan-form').addEventListener('submit', async (event) => {
     event.preventDefault();  // Prevent page reload
 
-    // Collect responses from input fields (assumes you're collecting responses for the brain scan)
-    const responses = [...document.querySelectorAll('.brain-scan-input')].map(input => input.value);
+    // Collect responses from the brain scan form
+    const responses = {
+        stressLevel: document.getElementById('stress-level').value,
+        emotions: document.getElementById('emotions').value,
+        mentalHealth: document.getElementById('mental-health').value,
+        mindset: document.getElementById('mindset').value,
+        sleep: document.getElementById('sleep').value,
+    };
 
-    // Submit the brain scan responses to get therapy questions
-    submitBrainScanResponses(responses);
+    // Show loading message
+    document.getElementById('response').innerText = "Generating your therapy questions...";
+
+    try {
+        // Fetch therapy questions based on brain scan input
+        const response = await fetch('https://therapy-bot-backend.onrender.com/api/chat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ responses }),  // Send user responses
+        });
+
+        const data = await response.json();
+
+        if (!data.questions || data.questions.length === 0) {
+            throw new Error('No therapy questions received.');
+        }
+
+        // Hide brain scan form and display therapy questions
+        document.getElementById('brain-scan-form').style.display = 'none';
+        document.getElementById('therapy-questions-section').style.display = 'block';
+
+        // Display therapy questions dynamically
+        const therapyQuestionsContainer = document.getElementById('therapy-questions-container');
+        therapyQuestionsContainer.innerHTML = '';  // Clear any previous questions
+
+        data.questions.forEach((question, index) => {
+            const questionDiv = document.createElement('div');
+            questionDiv.classList.add('therapy-question');
+            questionDiv.innerHTML = `
+                <label for="question-${index}">${question}</label>
+                <textarea id="question-${index}" rows="4" required></textarea>
+            `;
+            therapyQuestionsContainer.appendChild(questionDiv);
+        });
+
+        // Show submit button after questions are generated
+        document.getElementById('submit-therapy-questions').style.display = 'inline-block';
+
+        // Handle form submission for therapy questions
+        document.getElementById('submit-therapy-questions').addEventListener('click', async () => {
+            const therapyResponses = [];
+            for (let i = 0; i < data.questions.length; i++) {
+                const userResponse = document.getElementById(`question-${i}`).value;
+                therapyResponses.push(userResponse);
+            }
+
+            // Send therapy responses to server for profile generation
+            const finalResponse = await fetch('https://therapy-bot-backend.onrender.com/api/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ responses: therapyResponses }),
+            });
+
+            const finalData = await finalResponse.json();
+
+            if (!finalData.profile) {
+                document.getElementById('response').innerText = "Error generating profile.";
+                return;
+            }
+
+            // Display the final therapy profile
+            document.getElementById('response').innerHTML = `
+                <h2>Your Personalized Therapy Profile:</h2>
+                <p>${finalData.profile}</p>
+            `;
+        });
+    } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('response').innerText = `Error: ${error.message}`;
+    }
 });
