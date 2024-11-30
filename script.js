@@ -1,10 +1,12 @@
-let isSubmitting = false; // Declare the variable at the top to keep track of form submission state
+// Declare isSubmitting variable at the top to ensure it is globally accessible
+let isSubmitting = false;
 
 async function submitResponses(responses) {
     const responseDiv = document.getElementById('response'); // Placeholder for results
 
-    if (isSubmitting) return; // Prevent multiple submissions
-    isSubmitting = true; // Set to true to prevent further submissions
+    // Prevent multiple submissions
+    if (isSubmitting) return;
+    isSubmitting = true; // Set isSubmitting to true to prevent further submissions
 
     try {
         // Display loading message
@@ -19,9 +21,10 @@ async function submitResponses(responses) {
             body: JSON.stringify({ responses }), // Send user input
         });
 
+        // Check for a successful response
         if (!response.ok) throw new Error('Failed to fetch profile.');
 
-        // Get the JSON data from the server
+        // Parse the JSON data from the server
         const data = await response.json();
 
         // Ensure the data contains the profile key
@@ -37,13 +40,15 @@ async function submitResponses(responses) {
             <p>${therapyProfile}</p>
         `;
     } catch (error) {
+        // Handle errors if any occur
         console.error('Error:', error);
         responseDiv.innerHTML = `
             <h2>Something went wrong</h2>
             <p>Please try again later. Error: ${error.message}</p>
         `;
     } finally {
-        isSubmitting = false; // Re-enable submission after a delay
+        // Re-enable submission after the process is finished
+        isSubmitting = false;
     }
 }
 
