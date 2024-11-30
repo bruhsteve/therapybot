@@ -3,37 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Therapy Quiz</title>
-    <link rel="icon" href="/favicon.ico">
+    <title>Brain Scan & Therapy Questions</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
             padding: 20px;
+            background-color: #f0f8ff;
+        }
+        h1 {
+            text-align: center;
+        }
+        .question {
+            margin-bottom: 15px;
         }
         #response {
             margin-top: 20px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <h1>Therapy Quiz</h1>
-    <form id="quiz-form">
-        <!-- Add your 20 questions here -->
-        <div>
-            <label for="question1">1. How do you feel most of the time?</label>
-            <input class="quiz-input" type="text" id="question1" required>
+    <h1>Complete Your Brain Scan</h1>
+    <form id="brain-scan-form">
+        <div class="question">
+            <label for="stress-level">How stressed do you feel on a scale from 1-10?</label>
+            <input type="number" id="stress-level" name="stress-level" min="1" max="10" required>
         </div>
-        <div>
-            <label for="question2">2. Do you struggle with sleep?</label>
-            <input class="quiz-input" type="text" id="question2" required>
+        <div class="question">
+            <label for="emotions">How would you describe your emotions right now?</label>
+            <textarea id="emotions" name="emotions" rows="4" required></textarea>
         </div>
-        <!-- Add more questions as needed -->
-        <button type="submit">Submit</button>
+        <div class="question">
+            <label for="mental-health">How would you rate your mental health in the last week (1-10)?</label>
+            <input type="number" id="mental-health" name="mental-health" min="1" max="10" required>
+        </div>
+        <div class="question">
+            <label for="mindset">Do you feel hopeful about your future?</label>
+            <select id="mindset" name="mindset" required>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+                <option value="unsure">Unsure</option>
+            </select>
+        </div>
+        <div class="question">
+            <label for="sleep">How well have you been sleeping?</label>
+            <select id="sleep" name="sleep" required>
+                <option value="well">Well</option>
+                <option value="average">Average</option>
+                <option value="poor">Poor</option>
+            </select>
+        </div>
+        <button type="submit">Submit Brain Scan</button>
     </form>
-    <div id="response">
-        <p>Answer the questions to see your personalized therapy profile.</p>
-    </div>
+
+    <div id="response"></div>
 
     <script src="script.js"></script>
 </body>

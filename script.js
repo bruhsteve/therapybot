@@ -1,15 +1,19 @@
 // Declare isSubmitting variable at the top to ensure it is globally accessible
+let isSubmitting = false;
 
-async function submitResponses(responses) {
+async function submitBrainScan(responses) {
     const responseDiv = document.getElementById('response'); // Placeholder for results
 
     // Prevent multiple submissions
-    try {
-        // Display loading message
-        responseDiv.innerText = "Generating your therapy profile...";
+    if (isSubmitting) return;
+    isSubmitting = true;
 
-        // Send responses to your backend server
-        const response = await fetch('https://therapy-bot-backend.onrender.com/api/chat', {
+    // Display loading message
+    responseDiv.innerText = "Generating your therapy profile...";
+
+    try {
+        // Send the responses to your backend server
+        const response = await fetch('https://therapy-bot-backend.onrender.com/api/brain-scan', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -18,23 +22,24 @@ async function submitResponses(responses) {
         });
 
         // Check for a successful response
-        if (!response.ok) throw new Error('Failed to fetch profile.');
+        if (!response.ok) throw new Error('Failed to generate therapy profile.');
 
         // Parse the JSON data from the server
         const data = await response.json();
 
         // Ensure the data contains the profile key
-        if (!data.profile) {
-            throw new Error('Profile not found in response.');
+        if (!data.questions || data.questions.length !== 15) {
+            throw new Error('Questions not generated properly.');
         }
 
-        const therapyProfile = data.profile; // Extract the profile from the response
+        const therapyQuestions = data.questions; // Extract the questions from the response
 
-        // Update the UI with the therapy profile
-        responseDiv.innerHTML = `
-            <h2>Your Personalized Therapy Profile:</h2>
-            <p>${therapyProfile}</p>
-        `;
+        // Update the UI with the therapy questions
+        responseDiv.innerHTML = `<h2>Your Personalized Therapy Questions:</h2><ul>`;
+        therapyQuestions.forEach(question => {
+            responseDiv.innerHTML += `<li>${question}</li>`;
+        });
+        responseDiv.innerHTML += `</ul>`;
     } catch (error) {
         // Handle errors if any occur
         console.error('Error:', error);
@@ -42,16 +47,24 @@ async function submitResponses(responses) {
             <h2>Something went wrong</h2>
             <p>Please try again later. Error: ${error.message}</p>
         `;
-    } 
+    } finally {
+        isSubmitting = false;
+    }
 }
 
-// Attach event listener to the quiz form
-document.getElementById('quiz-form').addEventListener('submit', (event) => {
+// Attach event listener to the brain scan form
+document.getElementById('brain-scan-form').addEventListener('submit', (event) => {
     event.preventDefault(); // Prevent page reload
 
-    // Collect responses from input fields
-    const responses = [...document.querySelectorAll('.quiz-input')].map(input => input.value);
+    // Collect responses from the brain scan form
+    const responses = {
+        stressLevel: document.getElementById('stress-level').value,
+        emotions: document.getElementById('emotions').value,
+        mentalHealth: document.getElementById('mental-health').value,
+        mindset: document.getElementById('mindset').value,
+        sleep: document.getElementById('sleep').value,
+    };
 
-    // Submit the responses to the server
-    submitResponses(responses);
+    // Submit the responses to the backend
+    submitBrainScan(responses);
 });
