@@ -6,7 +6,7 @@ async function submitResponses(responses) {
         responseDiv.innerText = "Generating your therapy profile...";
 
         // Send responses to your backend server
-        const response = await fetch('https://therapy-bot-backend.onrender.com/api/chat', { // Call your backend endpoint
+        const response = await fetch('https://therapy-bot-backend.onrender.com', { // Call your backend endpoint
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
