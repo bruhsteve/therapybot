@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Therapy Quiz</title>
+    <link rel="icon" href="/favicon.ico">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+        }
+        #response {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Therapy Quiz</h1>
+    <form id="quiz-form">
+        <!-- Add your 20 questions here -->
+        <div>
+            <label for="question1">1. How do you feel most of the time?</label>
+            <input class="quiz-input" type="text" id="question1" required>
+        </div>
+        <div>
+            <label for="question2">2. Do you struggle with sleep?</label>
+            <input class="quiz-input" type="text" id="question2" required>
+        </div>
+        <!-- Add more questions as needed -->
+        <button type="submit">Submit</button>
+    </form>
+    <div id="response">
+        <p>Answer the questions to see your personalized therapy profile.</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
