@@ -1,3 +1,15 @@
+window.onload = () => {
+    setTimeout(() => {
+        // Hide loading screen
+        const loadingScreen = document.getElementById('loading-screen');
+        loadingScreen.style.display = 'none';
+
+        // Show the brain scan form
+        const brainScanSection = document.getElementById('brain-scan-section');
+        brainScanSection.style.display = 'block';
+    }, 3000); // Adjust the delay (in milliseconds) as needed
+};
+
 document.getElementById('brain-scan-form').addEventListener('submit', async (event) => {
     event.preventDefault();  // Prevent page reload
 
