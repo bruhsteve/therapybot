@@ -28,7 +28,7 @@ window.onload = function () {
 
 function startQuiz() {
     const nar = [
-      "As you stroll down Toasty Street, the irresistible smell of freshly baked goods draws you to the coolest bakery in Toastown. Inside, you see the display case showing all sorts of toast with tasty toppings.",
+      "It seems you hold yourself to impossibly high standards, sometimes seeing flaws in places others wouldn’t even notice. \n This perfectionism shapes the way you view yourself and the world around you.",
       "Exiting the bakery, you're greeted by the lively pulse of the city streets. Surrounded by the constant motion of people and traffic, you feel excited.",
       "Back home after a busy day, you kick off your shoes and settle into your comfy couch and start daydreaming.",
       "As the day draws to a close, you relax and reflect about what happened and how you got here."

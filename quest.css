@@ -10,14 +10,25 @@
   
 
 html{
-    height: 100vh;
-    width: auto;
-    margin: 30px 30px 30px 30px;
-    background-color: #5a3830;
-    font-family: "Poppins", sans-serif;
+    height: auto;
+    width: 90%;
+    background-color: var(--background);
+    text-align: center;
+
+    /* header */
+    font-family: "Averia Sans Libre", sans-serif;
+    font-size: 100px;
     font-style: normal;
-    overflow-y: hidden;
+    font-weight: 400;
+    line-height: normal;
 }
+
+body{
+    height: 100%;
+    padding-top: 20px;
+    margin-left: 0;
+    margin-right: 0;
+  }
 
 #progress-container {
     width: 100%;
@@ -35,7 +46,7 @@ html{
 }
 
 #load img{
-    max-width: 150px;   
+    max-width: 500px;   
     margin-left: auto;
     margin-right: auto;
     display: block;
