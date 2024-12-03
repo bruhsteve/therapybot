@@ -19,15 +19,22 @@
     <a href="about.html">About</a>
   </header>
   
-  <section id = "welcome">
-    
+  <section id = "scan">
+    <img src = "assets/brain.png">
       <br>
-      <desc>
-        Analyzing brainwaves...
-    </desc>
-    <div class = "toastBtn">
-      <a href = "scan.html"><img id = "startBtn" src = "assets/cloud_onClick.png" class = "image"></a>
-      <img src = "assets/cloud_hover.png">
+      <text id="text1">Analyzing brainwaves...</text>
+    <text id="text2">Scanning memories...</text>
+    <text id="text3">Developing scenario...</text>
+    <text id="text4">SCAN COMPLETE</text>
+
+    <script>
+        // Function to redirect to a new page after text4 animation finishes
+        document.getElementById("text4").addEventListener("animationend", function() {
+            // Redirect to a new page (replace 'newpage.html' with the target page)
+            window.location.href = "quest.html";
+        });
+        </script>
+    
   </section>
 
 </body>

@@ -1,12 +1,13 @@
 :root{
-    --background: #f9e5c1;
-    --prim: #ca9558;
-    --sec: #5a3830;
-    --ter: #9b3c27;
-    --footer: #8a3521;
-    --a: #7a3b2e;
-    --text: #faecd7;
-}
+    --background: #24241E;
+    --prim: #F6EEE5;
+    --sec: #F6EEE5;
+    --ter: #F6EEE5;
+    --footer: #85A2DC;
+    --a: #85A2DC;
+    --text: #F6EEE5;
+  }
+  
 
 html{
     height: 100vh;

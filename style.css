@@ -47,6 +47,103 @@
     font-style: normal;
     font-weight: 400;
   }
+
+  #scan{
+    text-align: center;
+    margin-top: 15%;
+  } 
+
+  #scan text{
+    display: block; 
+    text-align: center;
+    color: var(--prim);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+  }
+
+  /* Show the first text */
+  #text1 {
+    animation: showText1 4s forwards;
+  }
+
+  /* Show the second text after a delay */
+  #text2 {
+    animation: showText2 4s forwards;
+    animation-delay: 4s; /* Starts after 4 seconds, once the first text disappears */
+  }
+
+  #text3 {
+    animation: showText3 4s forwards;
+    animation-delay: 8s; /* Starts after 4 seconds, once the first text disappears */
+  }
+  #text4 {
+    animation: showText3 4s forwards;
+    animation-delay: 12s; /* Starts after 4 seconds, once the first text disappears */
+  }
+
+  /* Keyframe animation to show text1 */
+@keyframes showText1 {
+  0% {
+      opacity: 0;
+      visibility: hidden;
+  }
+  50% {
+      opacity: 1;
+      visibility: visible;
+  }
+  100% {
+      opacity: 0;
+      visibility: hidden;
+  }
+}
+
+/* Keyframe animation to show text2 */
+@keyframes showText2 {
+  0% {
+      opacity: 0;
+      visibility: hidden;
+  }
+  50% {
+      opacity: 1;
+      visibility: visible;
+  }
+  100% {
+      opacity: 0;
+      visibility: hidden;
+  }
+}
+@keyframes showText3 {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  50% {
+      opacity: 1;
+      visibility: visible;
+  }
+  100% {
+      opacity: 0;
+      visibility: hidden;
+  }
+}
+@keyframes showText4 {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+      opacity: 1;
+      visibility: visible;
+  }
+}
+
+
+
+
   #welcome highlightblue{
     text-align: center;
     color: var(--footer);
