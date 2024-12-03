@@ -157,6 +157,27 @@
     max-width: 380px;
     height: auto;
   }
+
+  #typing-text {
+    display: inline; /* Ensure text flows inline */
+    color: var(--prim); /* Use your primary color variable */
+    font-size: 20px;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+    }
+
+  .blinking-cursor {
+    display: inline-block;
+    color: var(--prim); /* Same color as the text */
+    animation: blink 0.5s step-end infinite;
+  }
+
+  @keyframes blink {
+    50% {
+        opacity: 0;
+    }
+  }
   
   .header{
     display: flex;

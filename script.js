@@ -1,3 +1,31 @@
+function typeText(text, elementId, callback, speed = 50) {
+  let index = 0;
+  function type() {
+      const element = document.getElementById(elementId);
+      if (element) {
+        if (index < text.length) {
+            // Handle line break by checking for a special marker (e.g., '\n')
+            if (text.charAt(index) === '\n') {
+                element.innerHTML += '<br>';
+            } else {
+                element.innerHTML += text.charAt(index);
+            }
+            index++;
+            setTimeout(type, speed); // Adjust speed as needed
+        }
+    } else {
+        console.error(`Element with id "${elementId}" not found.`);
+    }
+  }
+  type();
+}
+
+// Start the typing animation on page load
+window.onload = function () {
+  const textToType = "Before we begin, we need to understand you better.\nPlease hold still while we scan your mind and memories.";
+  typeText(textToType, "typing-text");
+};
+
 function startQuiz() {
     const nar = [
       "As you stroll down Toasty Street, the irresistible smell of freshly baked goods draws you to the coolest bakery in Toastown. Inside, you see the display case showing all sorts of toast with tasty toppings.",
@@ -6,6 +34,15 @@ function startQuiz() {
       "As the day draws to a close, you relax and reflect about what happened and how you got here."
     ];
   
+    const textToType = "Before we begin, we need to understand you better. Please hold still while we scan your mind and memories.";
+    const typingTextId = "typing-text"; // The ID of the element where text will be typed
+    
+    // Display typing animation before starting quiz
+    typeText(textToType, typingTextId, () => {
+        // Callback to start the quiz after the text finishes typing
+        dispQuest();
+    });
+    
     const ep = [
       [
         "You approach the counter, torn between two options",
@@ -51,7 +88,7 @@ function startQuiz() {
       ["Wanting to start the day with productivity, you set an alarm", "You want to wake up naturally and trust that you can and will wake up at your own pace"]
     ]
     ];
-  
+
     let currEp = 0;
     let currQuest = 0;
     let ans = { E: 0, S: 0, T: 0, J: 0, I: 0, N: 0, F: 0, P: 0 };
