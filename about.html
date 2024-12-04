@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Averia+Sans+Libre:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background: #24241E;
+            --prim: #F6EEE5;
+            --sec: #F6EEE5;
+            --ter: #F6EEE5;
+            --footer: #85A2DC;
+            --a: #85A2DC;
+            --text: #F6EEE5;
+        }
+
+        body {
+            background-color: #374052;
+            margin: 0;
+            padding: 0;
+            font-family: "Averia Sans Libre", sans-serif;
+            color: var(--text);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: left;
+            padding: 40px 0;
+        }
+
+        .title-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .title-about {
+            font-size: 50px;
+            font-weight: 400;
+            color: white;
+        }
+
+        .title-neuro {
+            font-size: 75px;
+            font-weight: 700;
+            color: var(--footer);
+        }
+
+        .description {
+            font-size: 35px;
+            font-weight: 400;
+            line-height: 1;
+            margin: 75px 0;
+        }
+
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 100px;
+            margin: 200px 0;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .step:nth-child(even) {
+            flex-direction: row-reverse;
+            text-align: right;
+        }
+
+        .step-content {
+            flex: 1;
+            font-size: 30px;
+            font-weight: 400;
+        }
+
+        .step-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .step-image img {
+            max-width: 300px;
+            height: auto;
+        }
+        
+        #creators-container {
+            text-align: center; /* Centers the image horizontally */
+            margin: 100px auto; /* Adds space around the image */
+        }
+
+        #creators-container img {
+            max-width: 100%; /* Ensures the image scales properly on smaller screens */
+            height: auto; /* Keeps the aspect ratio */
+         }
+
+        @media (max-width: 1024px) {
+            .creators-wrapper {
+                width: 90%;
+                height: auto;
+                aspect-ratio: 931/444;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .title-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .step, .step:nth-child(even) {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .title-about { font-size: 50px; }
+            .title-neuro { font-size: 60px; }
+            .description, .step-content { font-size: 30px; }
+            .creators { font-size: 30px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="title-container">
+                <div class="title-about">About</div>
+                <div class="title-neuro">Neuro Narratives</div>
+            </div>
+            <div class="description">
+                Neuro Narratives combines advanced brain scans, quizzes, and decision-making scenarios to create an immersive process that help users confront mental and emotional challenges, reframe experiences, and grow with personalized feedback. This concept merges AI and neuroscience to foster self-awareness and resilience through a transformative, interactive process.
+            </div>
+        </div>
+
+        <div class="steps">
+            <div class="step">
+                <div class="step-content">
+                    1. It begins with a brain scan to analyze neural patterns tied to emotional triggers or mental blocks.
+                </div>
+                <div class="step-image">
+                    <img src="assets/blue_brain.png" alt="Brain scan illustration">
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-content">
+                    2. Users then take a personalized quiz, blending biological data with personal input.
+                </div>
+                <div class="step-image">
+                    <img src="assets/cluster.png" alt="Cluster">
+                </div>
+            </div>            
+
+            <div class="step">
+                <div class="step-content">
+                    3. The core experience is immersive simulations where users face past challenges or hypothetical scenarios, with decisions shaping the journey in real time.
+                </div>
+                <div class="step-image">
+                    <img src="assets/girlsadmirror.png" alt="Simulation illustration">
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-content">
+                    4. Finally, personalized feedback highlights growth areas and actionable strategies for improvement.
+                </div>
+                <div class="step-image">
+                    <img src="assets/pink_stars.png" alt="Feedback illustration">
+                </div>
+            </div>
+        </div>
+
+        <div id="creators-container">
+            <img src="assets/creators.png" alt="Creators: Alexis Ma, Akash Jain, Tiffany Lee, Christine Lee, and Marie Wibisana">
+          </div>
+          
+    </div>
+</body>
+</html>
