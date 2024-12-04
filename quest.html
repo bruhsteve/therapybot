@@ -18,14 +18,45 @@
     <div id="progress-bar"></div>
   </div>
   
-  <div id = "quiz"></div>
+  <!-- <div id = "quiz"></div>
   
   <div id = "load">
-    <img src = "assets/girlsadmirror.png">
+    <img src = "assets/gluecrackedmirror.png">
   </div>
 
   <div id = "quiz"></div>
-  <div id = "result"></div>
+  <div id = "result"></div> -->
+
+  <div id="content">
+    <p class="narration">
+      The mirror draws you closer. Beneath it lies a small table with a pot of glue and a brush. Instinctively, you pick up the brush, dipping it into the glue, and begin to repair a crack. As you work, the cracks seem to resist slightly, as though testing your patience.
+    </p>
+
+    <div id="load">
+      <img src="assets/gluecrackedmirror.png" alt="Glue and Cracked Mirror">
+    </div>
+
+    <p class="question">
+      As you begin <span class="highlight">mending</span> the crack, how does the task affect your <span class="highlight">stress level</span> on a scale of 1 to 10?
+    </p>
+
+    <div id="rating-scale">
+      <label for="stress1">low stress</label>
+      <input type="radio" id="stress1" name="stress" value="1">
+      <input type="radio" id="stress2" name="stress" value="2">
+      <input type="radio" id="stress3" name="stress" value="3">
+      <input type="radio" id="stress4" name="stress" value="4">
+      <input type="radio" id="stress5" name="stress" value="5">
+      <input type="radio" id="stress6" name="stress" value="6">
+      <input type="radio" id="stress7" name="stress" value="7">
+      <input type="radio" id="stress8" name="stress" value="8">
+      <input type="radio" id="stress9" name="stress" value="9">
+      <input type="radio" id="stress10" name="stress" value="10">
+      <label for="stress10">high stress</label>
+    </div>
+
+    <button id="next-button">Next</button>
+  </div>
 
   <script src = "script.js"></script>
 </body>
