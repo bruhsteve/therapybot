@@ -4,6 +4,7 @@
     --sec: #F6EEE5;
     --ter: #F6EEE5;
     --footer: #85A2DC;
+    --purple: #ADA2F0;
     --a: #85A2DC;
     --text: #F6EEE5;
   }
@@ -27,6 +28,12 @@
     padding-top: 5px;
     margin-left: 0;
     margin-right: 0;
+  }
+  .image-container {
+    position: relative; /* Keep the image container relative to its parent */
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   #welcome{
@@ -158,6 +165,49 @@
     height: auto;
   }
 
+  #scenario img{
+    max-width: 550px;
+    margin-top: 5%;
+  }
+
+  #scenario text{
+    margin-top: 10%;
+    display: block; 
+    text-align: center;
+    color: var(--prim);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+  }
+  #scenario2 text{
+    margin-top: 10%;
+    display: block; 
+    text-align: center;
+    color: var(--prim);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+  }
+  #scenario3 text{
+    display: block; 
+    text-align: center;
+    color: var(--prim);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  
+  #scenario highlightpurple{
+    text-align: center;
+    color: var(--footer);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  
+
   #typing-text {
     display: inline; /* Ensure text flows inline */
     color: var(--prim); /* Use your primary color variable */
@@ -203,6 +253,9 @@
     margin-top: 8px;
     width: 800px;
   }
+  .nextBtn img{
+    width: 300px;
+  }
   
   .image{
     position: absolute;
@@ -213,7 +266,10 @@
   .image:hover{
     opacity: 0;
   }
-  
+  .hidden {
+    display: none;  /* Hides the element */
+  }
+
   /* js - poster result */
   #posterRes h2{
     font-size: 30px;

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <meta charset="utf-8">
+  <title>Toastology</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <script src="script.js"></script>
+  <link rel="icon" href="pic/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Averia+Sans+Libre:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+      <a href="index.html">Neuro Narratives</a>
+      <a href="about.html">About</a>
+    </header>
+    
+    <section id="scenario">
+      <text id="typing-text2"></text>
+      <div class="image-container">
+        <img src="assets/girlsadmirror.png" alt="Reflection" class="static-image">
+      </div>
+  
+      <script>
+        // Start the typing animation on page load
+        window.onload = function () {
+          const textToType2 = "You tend to strive for perfection, often at the expense of your own peace. \n It seems you hold yourself to impossibly high standards, sometimes seeing flaws in places others wouldn’t even notice. \n This perfectionism shapes the way you view yourself and the world around you.";
+          typeText(textToType2, "typing-text2");
+        };
+  
+        // Function to show the new content after clicking the "Next" button
+        function showNext() {
+          // Hide the current content
+          document.getElementById('scenario').style.display = 'none';
+  
+          // Show the new content
+          document.getElementById('scenario2').style.display = 'block';
+        }
+      </script>
+
+  
+      <div class="nextBtn">
+        <a href="#" onclick="showNext()">
+          <img id="nextBtn" src="assets/nextbutton.png" class="image">
+        </a>
+        <img src="assets/next2.png">
+      </div>
+  
+    
+    </section>
+
+    <!-- New content initially hidden -->
+    <section id="scenario2" style="display: none;">
+        <text>Now, let’s immerse you deeper into this experience. <br> You will enter the Cracked Mirror World, where you’ll confront the fragmented ways you see yourself.<br> Each step will bring you closer to understanding and, perhaps, acceptance.</text>
+
+
+        <script>
+      
+            // Function to show the new content after clicking the "Next" button
+            function showNext2() {
+              // Hide the current content
+              document.getElementById('scenario2').style.display = 'none';
+      
+              // Show the new content
+              document.getElementById('scenario3').style.display = 'block';
+            }
+          </script>
+
+        <div class="nextBtn">
+            <a href="#" onclick="showNext2()">
+              <img id="nextBtn" src="assets/nextbutton.png" class="image">
+            </a>
+            <img src="assets/next2.png">
+          </div>
+    </section>
+
+    <section id="scenario3" style="display: none;">
+        <br>
+        <text>You stand in a large hall, surrounded by mirrors that reflect you in different ways. </text>
+        <br>
+        <div class="image-container">
+            <img src="assets/mirrorhallway.png">
+          </div>
+        <text>The air feels mysterious, and your attention is drawn to a cracked mirror. <br> Its broken surface glows softly, as if it holds secrets just waiting to be discovered.</text>
+
+        <div class="nextBtn">
+            <a href="quest.html">
+              <img id="nextBtn" src="assets/nextbutton.png" class="image">
+            </a>
+            <img src="assets/next2.png">
+          </div>
+    </section>
+
+  </body>
+  </html>
+  
