@@ -147,3 +147,36 @@
   .image:hover{
     opacity: 0;
   }
+
+  #choices-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .choice-button {
+    padding: 10px 20px;
+    background-color: var(--footer);
+    color: var(--button-text);
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: "Averia Sans Libre", sans-serif;
+    font-style: normal;
+    font-weight: 400px;
+    line-height: normal;
+  }
+  
+  .choice-button:hover {
+    background-color: var(--text);
+    color: var(--background);
+  }
+
+  .choice-button.selected {
+    background-color: var(--highlight);
+    color: var(--text); 
+    border: 2px solid var(--text); 
+  }

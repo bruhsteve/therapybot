@@ -180,6 +180,19 @@ function startQuiz() {
         rsltPg();
       }
     }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const yesButton = document.getElementById("yes-button");
+      const noButton = document.getElementById("no-button");
+      const buttons = [yesButton, noButton];
+    
+      buttons.forEach(button => {
+        button.addEventListener("click", () => {
+          buttons.forEach(btn => btn.classList.remove("selected"));
+          button.classList.add("selected");
+        });
+      });
+    });
   
     function calcRslt() {
       let mbti = '';
