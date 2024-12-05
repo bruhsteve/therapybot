@@ -199,35 +199,31 @@ The user is immersed in a therapeutic scenario where they are repairing a broken
 Given this context, provide a holistic therapeutic suggestion that addresses their emotional state, inner strength, and outlook for the future. Aim to offer empathetic guidance, acknowledging their current feelings, strength, and sense of hope or uncertainty.
 `;
 
-const apiKey = "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"; // Replace with your actual API key
 
 async function getTherapeuticAdvice() {
-  const apiKey = "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"; // Replace with your OpenAI API key
-
-  const response = await fetch("https://api.openai.com/v1/chat/completions", {
+  try {
+    const response = await fetch("https://therapy-bot-backend.onrender.com/api/chat", {
       method: "POST",
       headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-          model: "gpt-3.5-turbo",
-          messages: [
-              { role: "system", content: "You are a helpful assistant providing holistic therapeutic suggestions." },
-              { role: "user", content: prompt },
-          ],
-          max_tokens: 500,
-          temperature: 0.7,
-      })
-  });
+      body: JSON.stringify({ prompt }),
+    });
 
-  const data = await response.json();
-  const suggestion = data.choices[0].message.content.trim();
+    if (!response.ok) {
+      throw new Error("Failed to fetch from backend");
+    }
 
-  // Display the therapeutic suggestion in resulttext4
-  const resultText4 = document.getElementById("resulttext4");
-  resultText4.innerHTML = suggestion; // Display the response in resulttext4
+    const data = await response.json();
+    console.log("Therapeutic advice:", data);
+
+    // Display therapeutic suggestion
+    const suggestion = data.choices[0].message.content.trim();
+    const resultText4 = document.getElementById("resulttext4");
+    resultText4.innerHTML = suggestion;
+  } catch (error) {
+    console.error("Error:", error.message);
+  }
 }
 
-// Call the function to get the advice
 getTherapeuticAdvice();
