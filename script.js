@@ -199,29 +199,39 @@ The user is immersed in a therapeutic scenario where they are repairing a broken
 Given this context, provide a holistic therapeutic suggestion that addresses their emotional state, inner strength, and outlook for the future. Aim to offer empathetic guidance, acknowledging their current feelings, strength, and sense of hope or uncertainty.
 `;
 
-
 async function getTherapeuticAdvice() {
   try {
-    const response = await fetch("https://therapy-bot-backend.onrender.com/api/chat", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ prompt }),
-    });
+      // Sending POST request to your backend
+      const response = await fetch("https://therapy-bot-backend.onrender.com/api/chat", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+              prompt: prompt,  // Send the prompt as part of the request body
+          }),
+      });
 
-    if (!response.ok) {
-      throw new Error("Failed to fetch from backend");
-    }
+      if (!response.ok) {
+          throw new Error("Failed to fetch response from backend");
+      }
 
-    const data = await response.json();
-    console.log("Therapeutic advice:", data);
+      const data = await response.json();
 
-    // Display therapeutic suggestion
-    const suggestion = data.choices[0].message.content.trim();
-    const resultText4 = document.getElementById("resulttext4");
-    resultText4.innerHTML = suggestion;
+      // Check if response contains the expected data
+      if (data.choices && data.choices.length > 0) {
+          const suggestion = data.choices[0].message.content.trim();
+
+          // Display the suggestion in the result text
+          const resultText4 = document.getElementById("resulttext4");
+          resultText4.innerHTML = suggestion; // Update the page with the response
+      } else {
+          console.error("Unexpected response format", data);
+      }
   } catch (error) {
-    console.error("Error:", error.message);
+      console.error("Error fetching therapeutic advice:", error);
   }
 }
+
+// Call the function to get the advice
+getTherapeuticAdvice();
