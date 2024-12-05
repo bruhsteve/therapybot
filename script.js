@@ -21,10 +21,10 @@ function typeText(text, elementId, callback, speed = 50) {
 }
 
 // Start the typing animation on page load
-window.onload = function () {
+document.addEventListener('DOMContentLoaded', function() {
   const textToType = "Before we begin, we need to understand you better.\nPlease hold still while we scan your mind and memories.";
   typeText(textToType, "typing-text");
-};
+});
 
 // Wait until the DOM is fully loaded
 window.onload = function() {
