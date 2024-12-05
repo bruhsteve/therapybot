@@ -225,5 +225,3 @@ async function getTherapeuticAdvice() {
     console.error("Error:", error.message);
   }
 }
-
-getTherapeuticAdvice();
