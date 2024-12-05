@@ -1,3 +1,17 @@
+/* Reset margins and paddings for all elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Ensure no extra space at the top */
+body, html {
+    margin: 0;
+    padding: 0;
+    background: none; /* Remove unintended background */
+}
+
 :root{
   --background: #24241E;
   --prim: #F6EEE5;
