@@ -199,21 +199,10 @@ The user is immersed in a therapeutic scenario where they are repairing a broken
 Given this context, provide a holistic therapeutic suggestion that addresses their emotional state, inner strength, and outlook for the future. Aim to offer empathetic guidance, acknowledging their current feelings, strength, and sense of hope or uncertainty.
 `;
 
-const apiKey = "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"; // Replace with your actual API key
+const apiKey = "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"; // Replace with your actual API key
 
 async function getTherapeuticAdvice() {
-  const prompt = `
-      The user is immersed in a therapeutic scenario where they are repairing a broken mirror. As they go through this experience, they are asked a series of reflective questions. Here are their responses:
-
-      1. **Emotions**: As they fit the piece into place, the user describes their emotions: 'I feel a sense of calm and focus.'
-      2. **Inner Strength Rating**: The user rates their inner strength on a scale from 1 to 10: 7.
-      3. **Hope for the Future**: The user is asked if they feel hopeful about their future as they mend the cracks in the mirror. Their answer is: 'Yes.'
-      4. **Final Thoughts**: As the user gazes at their reflection, they reflect on their journey. Their final thoughts are: 'I’ve grown stronger through this journey.'
-      
-      Given this context, provide a holistic therapeutic suggestion that addresses their emotional state, inner strength, and outlook for the future. Aim to offer empathetic guidance, acknowledging their current feelings, strength, and sense of hope or uncertainty.
-  `;
-
-  const apiKey = "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"; // Replace with your OpenAI API key
+  const apiKey = "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"; // Replace with your OpenAI API key
 
   const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
@@ -227,7 +216,7 @@ async function getTherapeuticAdvice() {
               { role: "system", content: "You are a helpful assistant providing holistic therapeutic suggestions." },
               { role: "user", content: prompt },
           ],
-          max_tokens: 300,
+          max_tokens: 500,
           temperature: 0.7,
       })
   });
